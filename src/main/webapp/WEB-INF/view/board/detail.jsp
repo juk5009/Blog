@@ -11,9 +11,9 @@
             </c:if>
 
 
-            <div class="mb-2">
+            <div class="mb-2 d-flex justify-content-end"">
                 글 번호 :
-                <span id="id">
+                <span id="id" class="me-3">
                     <i>${dto.id} </i>
                 </span>
                 작성자 :
@@ -21,19 +21,19 @@
                     <i>${dto.username} </i>
                 </span>
 
-                <i id="heart" class="fa-regular fa-heart my-xl my-cursor" value="no"></i>
             </div>
 
             <div>
-                <h3>${dto.title}</h3>
+                <h1><b>${dto.title}</b></h1>
             </div>
             <hr />
             <div>
                 <div>${dto.content}</div>
             </div>
             <hr />
+            <i id="heart" class="fa-regular fa-heart fa-lg"></i>
 
-            <div class="card">
+            <div class="card mt-3">
                 <form>
                     <div class="card-body">
                         <textarea id="reply-content" class="form-control" rows="1"></textarea>

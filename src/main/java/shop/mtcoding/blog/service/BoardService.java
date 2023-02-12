@@ -11,6 +11,7 @@ import shop.mtcoding.blog.handler.ex.CustomApiException;
 import shop.mtcoding.blog.handler.ex.CustomException;
 import shop.mtcoding.blog.model.Board;
 import shop.mtcoding.blog.model.BoardRepository;
+import shop.mtcoding.blog.util.HtmlParser;
 
 @Service
 public class BoardService {
@@ -20,12 +21,15 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardSaveReqDto boardSaveReqDto, int userId) {
+
+        String thumbnail = HtmlParser.getThumbnail(boardSaveReqDto.getContent());
+
         int result = boardRepository.insert(
                 boardSaveReqDto.getTitle(),
-                boardSaveReqDto.getContent(), null,
+                boardSaveReqDto.getContent(), thumbnail,
                 userId);
         if (result != 1) {
-            throw new CustomException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
